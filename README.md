@@ -1,11 +1,13 @@
 # empirical_example
 Mplus code for empirical study
 
-cfa_ls.out and cfa_sa.out include the dimensionality tests, scale-level invariance tests, and reliability estimates (omega coefficients).
+application_example.dat is the dataset.
 
-lclpm_f.out is the Mplus code for LCLPM-F, and lclpm_ci.out is the Mplus code for LCLPM-CI.
+cfa_ho1_uli.out and cfa_sa1.out include the dimensionality tests, and reliability estimates (omega coefficients).
+
+The Mplus input files cfa_long_ho_sa_config.inp, cfa_long_ho_sa_metric.inp, and cfa_long_ho_sa_scalar.inp contain the code used to test longitudinal measurement invariance.
  
-lclpm_without_random_intercept_v1.out and lclpm_without_random_intercept_v2.out provide two alternative approaches for fitting the LCLPM-F without random intercepts. One approach is based on within-person factors, whereas the other is based on latent factors. Both approaches produced identical results.
+lclpm_without_random_intercept_v1.out provides the approach for fitting the LCLPM-F without random intercepts. 
 
 lclpm_ci_without_random_intercept is the Mplus code for LCLPM-CI without random intercept.
 
