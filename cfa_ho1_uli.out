@@ -1,0 +1,587 @@
+Mplus VERSION 8.10
+MUTHEN & MUTHEN
+06/17/2026   8:10 PM
+
+INPUT INSTRUCTIONS
+
+  DATA:   FILE = application_example.dat;
+    VARIABLE:
+        names = ID HO11-HO14
+                   HO21-HO24
+                   HO31-HO34
+                   SA11-SA18
+                   SA21-SA28
+                   SA31-SA38;
+
+      USEVARIABLES = HO11-HO14
+                   !HO21-HO24
+                   !HO31-HO34
+                     ;
+
+    analysis:
+    estimator = ml;
+    RITERATIONS = 5000;
+    !STARTS = 500;
+
+  MODEL:
+      HO1 BY HO11
+             HO12  (L2)
+             HO13  (L3)
+             HO14  (L4);
+      HO1 (V);
+
+      HO11 (E1);        ! label the residual (error) variances
+      HO12 (E2);
+      HO13 (E3);
+      HO14 (E4);
+
+  MODEL CONSTRAINT:
+
+      NEW(omega);
+      omega = (1 + L2 + L3 + L4)**2 * V/
+              ((1 + L2 + L3 + L4)**2 * V + (E1 + E2 + E3 + E4));
+
+
+
+    OUTPUT: tech1 tech3 stdyx residual cinterval;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        2345
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   HO11        HO12        HO13        HO14
+
+Continuous latent variables
+   HO1
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  application_example.dat
+
+Input data format  FREE
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     HO11                  2.417       0.902       1.000   37.87%       1.000      2.000      2.000
+            2345.000       2.334      -0.291       6.000    5.59%       2.000      4.000
+     HO12                  1.976       1.413       1.000   56.29%       1.000      1.000      1.000
+            2345.000       1.989       0.952       6.000    3.58%       2.000      3.000
+     HO13                  2.259       1.022       1.000   41.66%       1.000      1.000      2.000
+            2345.000       2.063       0.043       6.000    3.75%       2.000      4.000
+     HO14                  1.838       1.647       1.000   57.87%       1.000      1.000      1.000
+            2345.000       1.582       2.085       6.000    2.56%       2.000      3.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       12
+
+Loglikelihood
+
+          H0 Value                      -14139.152
+          H1 Value                      -14118.589
+
+Information Criteria
+
+          Akaike (AIC)                   28302.304
+          Bayesian (BIC)                 28371.425
+          Sample-Size Adjusted BIC       28333.298
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             41.125
+          Degrees of Freedom                     2
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.091
+          90 Percent C.I.                    0.068  0.117
+          Probability RMSEA <= .05           0.002
+
+CFI/TLI
+
+          CFI                                0.992
+          TLI                                0.975
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           4755.852
+          Degrees of Freedom                     6
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.014
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ HO1      BY
+    HO11               1.000      0.000    999.000    999.000
+    HO12               1.032      0.030     34.431      0.000
+    HO13               1.181      0.032     37.304      0.000
+    HO14               0.972      0.028     35.338      0.000
+
+ Intercepts
+    HO11               2.417      0.032     76.595      0.000
+    HO12               1.976      0.029     67.843      0.000
+    HO13               2.259      0.030     76.167      0.000
+    HO14               1.838      0.026     70.753      0.000
+
+ Variances
+    HO1                1.136      0.062     18.413      0.000
+
+ Residual Variances
+    HO11               1.199      0.040     29.896      0.000
+    HO12               0.780      0.029     26.667      0.000
+    HO13               0.479      0.025     18.927      0.000
+    HO14               0.508      0.021     24.498      0.000
+
+New/Additional Parameters
+    OMEGA              0.870      0.004    197.669      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.185E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ HO1      BY
+    HO11               0.698      0.012     57.242      0.000
+    HO12               0.780      0.010     77.715      0.000
+    HO13               0.876      0.008    116.162      0.000
+    HO14               0.824      0.009     95.154      0.000
+
+ Intercepts
+    HO11               1.582      0.031     51.053      0.000
+    HO12               1.401      0.029     48.197      0.000
+    HO13               1.573      0.031     50.926      0.000
+    HO14               1.461      0.030     49.208      0.000
+
+ Variances
+    HO1                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    HO11               0.513      0.017     30.209      0.000
+    HO12               0.392      0.016     25.078      0.000
+    HO13               0.232      0.013     17.545      0.000
+    HO14               0.321      0.014     22.524      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    HO11               0.487      0.017     28.621      0.000
+    HO12               0.608      0.016     38.858      0.000
+    HO13               0.768      0.013     58.081      0.000
+    HO14               0.679      0.014     47.577      0.000
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ HO1      BY
+    HO11             1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    HO12             0.954       0.973       0.982       1.032       1.081       1.090       1.109
+    HO13             1.100       1.119       1.129       1.181       1.233       1.243       1.263
+    HO14             0.901       0.918       0.927       0.972       1.017       1.026       1.043
+
+ Intercepts
+    HO11             2.335       2.355       2.365       2.417       2.469       2.478       2.498
+    HO12             1.901       1.919       1.928       1.976       2.024       2.033       2.051
+    HO13             2.183       2.201       2.210       2.259       2.308       2.317       2.336
+    HO14             1.771       1.787       1.795       1.838       1.880       1.888       1.904
+
+ Variances
+    HO1              0.977       1.015       1.034       1.136       1.237       1.257       1.295
+
+ Residual Variances
+    HO11             1.095       1.120       1.133       1.199       1.265       1.277       1.302
+    HO12             0.705       0.723       0.732       0.780       0.828       0.837       0.855
+    HO13             0.414       0.429       0.437       0.479       0.520       0.528       0.544
+    HO14             0.455       0.468       0.474       0.508       0.542       0.549       0.562
+
+New/Additional Parameters
+    OMEGA            0.859       0.862       0.863       0.870       0.877       0.879       0.882
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ HO1      BY
+    HO11             0.666       0.674       0.677       0.698       0.718       0.721       0.729
+    HO12             0.754       0.760       0.763       0.780       0.796       0.799       0.805
+    HO13             0.857       0.862       0.864       0.876       0.889       0.891       0.896
+    HO14             0.802       0.807       0.810       0.824       0.838       0.841       0.846
+
+ Intercepts
+    HO11             1.502       1.521       1.531       1.582       1.633       1.642       1.662
+    HO12             1.326       1.344       1.353       1.401       1.449       1.458       1.476
+    HO13             1.493       1.512       1.522       1.573       1.624       1.633       1.652
+    HO14             1.385       1.403       1.412       1.461       1.510       1.519       1.538
+
+ Variances
+    HO1              1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+ Residual Variances
+    HO11             0.470       0.480       0.486       0.513       0.541       0.547       0.557
+    HO12             0.352       0.362       0.367       0.392       0.418       0.423       0.433
+    HO13             0.198       0.206       0.210       0.232       0.254       0.258       0.266
+    HO14             0.285       0.293       0.298       0.321       0.345       0.349       0.358
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Means
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+                2.417         1.976         2.259         1.838
+
+
+           Residuals for Means
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+ HO11           2.334
+ HO12           1.172         1.989
+ HO13           1.341         1.384         2.063
+ HO14           1.104         1.139         1.304         1.582
+
+
+           Model Estimated Correlations
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+ HO11           1.000
+ HO12           0.544         1.000
+ HO13           0.611         0.683         1.000
+ HO14           0.575         0.642         0.722         1.000
+
+
+           Residuals for Covariances
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+ HO11           0.000
+ HO12           0.077         0.000
+ HO13           0.008        -0.031         0.000
+ HO14          -0.063         0.006         0.018         0.000
+
+
+           Residuals for Correlations
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+ HO11           0.000
+ HO12           0.036         0.000
+ HO13           0.003        -0.015         0.000
+ HO14          -0.033         0.004         0.010         0.000
+
+
+           Standardized Residuals (z-scores) for Covariances
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+ HO11           0.000
+ HO12           4.627         0.043
+ HO13           0.860        -7.920         0.068
+ HO14          -6.613         0.860         4.331         0.000
+
+
+           Normalized Residuals for Covariances
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+ HO11           0.000
+ HO12           1.504         0.000
+ HO13           0.144        -0.615         0.000
+ HO14          -1.403         0.143         0.391         0.000
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+                  1             2             3             4
+
+
+           LAMBDA
+              HO1
+              ________
+ HO11               0
+ HO12               5
+ HO13               6
+ HO14               7
+
+
+           THETA
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+ HO11               8
+ HO12               0             9
+ HO13               0             0            10
+ HO14               0             0             0            11
+
+
+           ALPHA
+              HO1
+              ________
+                  0
+
+
+           BETA
+              HO1
+              ________
+ HO1                0
+
+
+           PSI
+              HO1
+              ________
+ HO1               12
+
+
+     PARAMETER SPECIFICATION FOR THE ADDITIONAL PARAMETERS
+
+
+           New/Additional Parameters
+              OMEGA
+              ________
+                   13
+
+
+     STARTING VALUES
+
+
+           NU
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+                2.417         1.976         2.259         1.838
+
+
+           LAMBDA
+              HO1
+              ________
+ HO11           1.000
+ HO12           1.029
+ HO13           1.159
+ HO14           0.954
+
+
+           THETA
+              HO11          HO12          HO13          HO14
+              ________      ________      ________      ________
+ HO11           1.167
+ HO12           0.000         0.994
+ HO13           0.000         0.000         1.032
+ HO14           0.000         0.000         0.000         0.791
+
+
+           ALPHA
+              HO1
+              ________
+                0.000
+
+
+           BETA
+              HO1
+              ________
+ HO1            0.000
+
+
+           PSI
+              HO1
+              ________
+ HO1            0.050
+
+
+     STARTING VALUES FOR THE ADDITIONAL PARAMETERS
+
+
+           New/Additional Parameters
+              OMEGA
+              ________
+                0.500
+
+
+TECHNICAL 3 OUTPUT
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+      1     0.995444D-03
+      2     0.499616D-03  0.848075D-03
+      3     0.572056D-03  0.590159D-03  0.879847D-03
+      4     0.470846D-03  0.485746D-03  0.556174D-03  0.674499D-03
+      5    -0.174136D-11 -0.187813D-11  0.438703D-12  0.316398D-13  0.897760D-03
+      6     0.192110D-10  0.197646D-10  0.929322D-11  0.188542D-10  0.615871D-03
+      7    -0.217179D-10 -0.224317D-10 -0.251054D-10 -0.114356D-10  0.529289D-03
+      8    -0.155102D-11 -0.639591D-12 -0.571321D-11  0.493058D-11  0.157815D-03
+      9     0.393807D-11  0.375053D-11 -0.661042D-11  0.558322D-11 -0.126935D-03
+     10    -0.158701D-10 -0.163563D-10  0.226153D-10 -0.830517D-11  0.393258D-04
+     11     0.109328D-10  0.112493D-10  0.689494D-11 -0.228305D-10 -0.227701D-04
+     12    -0.436932D-12 -0.357665D-12  0.457087D-11 -0.587033D-11 -0.121241D-02
+     13    -0.175574D-12 -0.204817D-12 -0.102945D-11  0.603514D-12 -0.121150D-04
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                  6             7             8             9            10
+              ________      ________      ________      ________      ________
+      6     0.100267D-02
+      7     0.615430D-03  0.756956D-03
+      8     0.227472D-03  0.195796D-03  0.160758D-02
+      9     0.841290D-04  0.259323D-04  0.369079D-04  0.855706D-03
+     10    -0.205653D-03  0.878687D-05 -0.771071D-04 -0.174210D-03  0.639569D-03
+     11    -0.260909D-05 -0.125594D-03 -0.711579D-04 -0.223774D-04 -0.922823D-04
+     12    -0.143498D-02 -0.118968D-02 -0.382130D-03 -0.369084D-04  0.770997D-04
+     13    -0.260632D-04 -0.196647D-04 -0.636054D-04 -0.310806D-04 -0.121039D-04
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                 11            12            13
+              ________      ________      ________
+     11     0.430368D-03
+     12     0.711568D-04  0.380395D-02
+     13    -0.103827D-04  0.181470D-03  0.193826D-04
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+      1         1.000
+      2         0.544         1.000
+      3         0.611         0.683         1.000
+      4         0.575         0.642         0.722         1.000
+      5         0.000         0.000         0.000         0.000         1.000
+      6         0.000         0.000         0.000         0.000         0.649
+      7         0.000         0.000         0.000         0.000         0.642
+      8         0.000         0.000         0.000         0.000         0.131
+      9         0.000         0.000         0.000         0.000        -0.145
+     10         0.000         0.000         0.000         0.000         0.052
+     11         0.000         0.000         0.000         0.000        -0.037
+     12         0.000         0.000         0.000         0.000        -0.656
+     13         0.000         0.000         0.000         0.000        -0.092
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                  6             7             8             9            10
+              ________      ________      ________      ________      ________
+      6         1.000
+      7         0.706         1.000
+      8         0.179         0.177         1.000
+      9         0.091         0.032         0.031         1.000
+     10        -0.257         0.013        -0.076        -0.235         1.000
+     11        -0.004        -0.220        -0.086        -0.037        -0.176
+     12        -0.735        -0.701        -0.155        -0.020         0.049
+     13        -0.187        -0.162        -0.360        -0.241        -0.109
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                 11            12            13
+              ________      ________      ________
+     11         1.000
+     12         0.056         1.000
+     13        -0.114         0.668         1.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\wqemi\onedrive - florida state university\myfsu_onedrive\documents\fsu\dissertation\applied data for illust
+
+     Beginning Time:  20:10:13
+        Ending Time:  20:10:13
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2023 Muthen & Muthen
