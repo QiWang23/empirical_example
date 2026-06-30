@@ -7,8 +7,12 @@ cfa_ho1_uli.out and cfa_sa1.out include the dimensionality tests, and reliabilit
 
 The Mplus input files cfa_long_ho_sa_config.inp, cfa_long_ho_sa_metric.inp, and cfa_long_ho_sa_scalar.inp contain the code used to test longitudinal measurement invariance.
  
-lclpm_without_random_intercept_v1.out provides the approach for fitting the LCLPM-F without random intercepts. 
+lclpm-f_uli_ho_sa_without_intercept.out provides the approach for fitting the L-CLPM-F without random intercepts. 
 
-lclpm_ci_without_random_intercept is the Mplus code for LCLPM-CI without random intercept.
+lclpm_ci_ho_sa_without_random_intercept.out is the Mplus code for L-CLPM-CI without random intercept.
 
-causal_predominance_test.r provides a function for testing whether causal predominance is statistically significant using the delta method. To use this function, simply run the script in R and supply the required input parameters.
+lclpm-f_uli_ho_sa_metric.out is the Mplus code for L-RI-CLPM-F.
+
+lclpm_ci_ho_sa.out is the Mplus code for L-RI-CLPM-CI.
+
+causal_predominance_function.r provides a function for testing whether causal predominance is statistically significant using the delta method. To use this function, simply run the script in R and supply the required input parameters.
